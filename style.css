@@ -1,0 +1,124 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  position: relative;
+}
+
+/* CORAZÓN */
+.heart {
+  width: 120px;
+  height: 120px;
+  background: #ff2d55;
+  position: relative;
+  transform: rotate(-45deg);
+  animation: pulse 1.5s infinite;
+  box-shadow: 0 0 50px rgba(255,45,85,0.9);
+  cursor: pointer;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  width: 120px;
+  height: 120px;
+  background: #ff2d55;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart::before {
+  top: -60px;
+  left: 0;
+}
+
+.heart::after {
+  left: 60px;
+  top: 0;
+}
+
+@keyframes pulse {
+  0% { transform: rotate(-45deg) scale(1); }
+  50% { transform: rotate(-45deg) scale(1.15); }
+  100% { transform: rotate(-45deg) scale(1); }
+}
+
+/* FRASES */
+.word {
+  position: absolute;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.8),
+    0 0 25px rgba(255,45,85,0.9),
+    0 0 45px rgba(255,45,85,0.7);
+
+  opacity: 0;
+  animation: glowFloat 4s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes glowFloat {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+    filter: blur(6px);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.15);
+    filter: blur(6px);
+  }
+}
+
+/* CORAZONES ROSAS VOLANDO */
+.mini-heart {
+  display: inline-block;
+  margin: 0 10px;
+  color: #ff6fae;
+  font-size: 1.2rem;
+
+  opacity: 0;
+  transform: translateY(25px) scale(0.4);
+  animation: heartFly 2.8s ease forwards;
+}
+
+.mini-heart.left {
+  animation-delay: 0.2s;
+}
+
+.mini-heart.right {
+  animation-delay: 0.4s;
+}
+
+@keyframes heartFly {
+  0% {
+    opacity: 0;
+    transform: translateY(25px) scale(0.4);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
